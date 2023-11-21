@@ -40,18 +40,18 @@ function App() {
     loading: forecastLoading,
     error: forecastError,
   } = useApi(
-    `weather?lat=${lat || 0}&lon=${
-      long || 0
-    }&units=metric&appid=100f863d3d4fae06325740a0023ccd30`
+    `weather?lat=${lat || 0}&lon=${long || 0}&units=metric&appid=${
+      import.meta.env.VITE_API_APP_ID
+    }`
   );
   const {
     data: futureForecast,
     loading,
     error,
   } = useApi(
-    `forecast?lat=${lat || 0}&lon=${
-      long || 0
-    }&units=metric&appid=100f863d3d4fae06325740a0023ccd30`
+    `forecast?lat=${lat || 0}&lon=${long || 0}&units=metric&appid=${
+      import.meta.env.VITE_API_APP_ID
+    }`
   );
 
   //   const currentTime = useCurrentTime();

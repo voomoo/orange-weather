@@ -38,7 +38,9 @@ const Topbar: React.FC<IProps> = ({ location }) => {
       if (inputValue) {
         setLoading(true);
         Axios.get(
-          `http://api.openweathermap.org/geo/1.0/direct?q=${inputValue}&limit=5&appid=100f863d3d4fae06325740a0023ccd30`
+          `http://api.openweathermap.org/geo/1.0/direct?q=${inputValue}&limit=5&appid=${
+            import.meta.env.VITE_API_APP_ID
+          }`
         )
           .then((response) => {
             setData(response.data);
