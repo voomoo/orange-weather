@@ -1,10 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { Search, LocateFixed } from "lucide-react";
-import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
 import { useEffect, useState } from "react";
 import { Axios } from "@/api/axios-instance";
 import { Input } from "@/components/ui/input";
-import { latAtom, longAtom, useGeolocation } from "@/hooks/useGeolocation";
+import { latAtom, longAtom } from "@/hooks/useGeolocation";
 import { useAtom } from "jotai";
 
 interface IProps {
@@ -15,9 +14,11 @@ const Topbar: React.FC<IProps> = ({ location }) => {
     const [inputValue, setInputValue] = useState("");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-    const [data, setData] = useState(null);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const [data, setData] = useState<any>(null);
 
-    const handleInputChange = (e) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const handleInputChange = (e: any) => {
         setInputValue(e.target.value);
     };
 
@@ -46,7 +47,7 @@ const Topbar: React.FC<IProps> = ({ location }) => {
     }, [inputValue]);
 
     return (
-        <nav className="border-b bg-white">
+        <nav className="border-b bg-white fixed top-0 w-screen">
             <div className="container my-4 flex justify-between items-center">
                 <h3 className="text-xl font-bold">
                     <span className="text-orange-500">GDN</span>TEST
@@ -57,7 +58,8 @@ const Topbar: React.FC<IProps> = ({ location }) => {
                         <Search className="w-4 h-4 absolute top-1/2 right-4 -translate-y-1/2 text-gray-400" />
                         {inputValue && (
                             <div className="fixed bg-white w-96 p-4 z-10 border-b border-r border-l">
-                                {data?.map((item) => (
+                                {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+                                {data?.map((item: any) => (
                                     <span
                                         key={item?.lat}
                                         className="block p-2 cursor-pointer hover:text-orange-500"
@@ -69,6 +71,8 @@ const Topbar: React.FC<IProps> = ({ location }) => {
                                         {item?.name}, {item?.state}, {item?.country}
                                     </span>
                                 ))}
+                                {loading && <span className="block p-2 cursor-pointer hover:text-orange-500">Loading...</span>}
+                                {error && <span className="block p-2 cursor-pointer hover:text-orange-500">Error...</span>}
                             </div>
                         )}
                     </div>

@@ -11,7 +11,7 @@ const Layout: React.FC<IProps> = ({ children, location }) => {
     return (
         <div>
             <Topbar location={location} />
-            <div className="container bg-gray-50 py-8 mb-10">{children}</div>
+            <div className="container bg-gray-50 py-8 mb-10 mt-16">{children}</div>
             <footer className="py-2 px-8 border-t flex items-center justify-between fixed w-screen bottom-0 bg-white">
                 <h1 className="text-center text-sm">Created by Rakibul Hasan with 💙</h1>
                 <div className="flex items-center gap-2">
